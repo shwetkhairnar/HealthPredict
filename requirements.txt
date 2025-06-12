@@ -15,4 +15,5 @@ pandas==2.2.3
 scikit-learn==1.6.1
 scipy==1.15.2
 joblib==1.4.2
+python-slugify==8.0.4
 gunicorn==21.2.0  # Needed by Render to run the app
