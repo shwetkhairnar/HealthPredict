@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="mb-4">Medical Blogs</h1>
+        
+        {% for blog in blogs.items %}
+        <div class="card mb-4 shadow-sm">
+            {% if blog.image_url %}
+            <img src="{{ blog.image_url }}" class="card-img-top" alt="{{ blog.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h2 class="card-title">
+                    <a href="{{ url_for('blog_detail', slug=blog.slug) }}" class="text-decoration-none">
+                        {{ blog.title }}
+                    </a>
+                </h2>
+                <div class="mb-2 text-muted">
+                    <i class="fas fa-user me-1"></i> {{ blog.author }} | 
+                    <i class="fas fa-calendar me-1"></i> {{ blog.created_at.strftime('%B %d, %Y') }} | 
+                    <i class="fas fa-tag me-1"></i> {{ blog.category }}
+                </div>
+                <p class="card-text">{{ blog.content|striptags|truncate(200) }}</p>
+                <a href="{{ url_for('blog_detail', slug=blog.slug) }}" class="btn btn-primary">Read More</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+        <nav aria-label="Blog pagination">
+            <ul class="pagination">
+                {% if blogs.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('blogs', page=blogs.prev_num) }}">Previous</a>
+                </li>
+                {% endif %}
+                
+                {% for page_num in blogs.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=3) %}
+                    {% if page_num %}
+                        <li class="page-item {% if page_num == blogs.page %}active{% endif %}">
+                            <a class="page-link" href="{{ url_for('blogs', page=page_num) }}">{{ page_num }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if blogs.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('blogs', page=blogs.next_num) }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="col-lg-4">
+        <!-- Categories Widget -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-tags me-2"></i>Categories</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for category in categories %}
+                    <a href="{{ url_for('blogs_by_category', category=category) }}" 
+                       class="list-group-item list-group-item-action">
+                        {{ category }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Posts Widget -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-history me-2"></i>Recent Posts</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for recent_blog in recent_blogs %}
+                    <a href="{{ url_for('blog_detail', slug=recent_blog.slug) }}" 
+                       class="list-group-item list-group-item-action">
+                        {{ recent_blog.title }}
+                        <small class="d-block text-muted">{{ recent_blog.created_at.strftime('%b %d, %Y') }}</small>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

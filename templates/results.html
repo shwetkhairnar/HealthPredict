@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+        <div class="card shadow-lg border-0 mb-5">
+            <div class="card-header {% if severity == 'severe' or severity == 'serious' %}bg-danger{% else %}bg-warning{% endif %} text-white d-flex align-items-center">
+                <i class="fas fa-file-medical fa-lg me-2"></i>
+                <h3 class="mb-0">Prediction Results</h3>
+            </div>
+            <div class="card-body bg-light">
+                <div class="alert {% if severity == 'severe' or severity == 'serious' %}alert-danger{% else %}alert-info{% endif %} rounded-3 shadow-sm">
+                    <h4 class="alert-heading">
+                        <i class="fas fa-disease me-2 text-danger"></i>
+                        Likely Condition: <strong class="text-dark">{{ disease }}</strong>
+                    </h4>
+                    <p class="mb-0">Severity: <span class="badge bg-dark">{{ severity|upper }}</span></p>
+                </div>
+
+                <div class="my-4">
+                    <h5 class="text-primary"><i class="fas fa-list me-2"></i>Your Reported Symptoms:</h5>
+                    <ul class="list-group list-group-flush border rounded shadow-sm">
+                        {% for symptom in symptoms %}
+                        <li class="list-group-item"><i class="fas fa-chevron-right text-muted me-2"></i>{{ symptom }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="text-success"><i class="fas fa-hand-holding-medical me-2"></i>Recommended Actions:</h5>
+                    <div class="p-3 bg-white border-start border-5 border-success rounded shadow-sm">
+                        {{ remedies }}
+                    </div>
+                </div>
+
+                {% if severity == 'severe' or severity == 'serious' %}
+                <div class="alert alert-danger shadow-sm">
+                    <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Warning!</h5>
+                    <p class="mb-0">This condition may be serious. Please seek immediate medical attention.</p>
+                </div>
+                {% else %}
+                <div class="alert alert-secondary shadow-sm">
+                    <h5 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Note</h5>
+                    <p class="mb-0">Consult a healthcare professional if symptoms persist or worsen.</p>
+                </div>
+                {% endif %}
+
+                <div class="text-end">
+                    <a href="/" class="btn btn-outline-primary mt-3">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Symptom Checker
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

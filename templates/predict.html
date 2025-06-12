@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f0f2f5;
+    }
+
+    .card {
+        border: none;
+        border-radius: 20px;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .card-header {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background: linear-gradient(135deg, #ff6b6b, #f06595);
+    }
+
+    .card-body {
+        background-color: #ffffff;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .alert {
+        border-radius: 12px;
+    }
+
+    .list-group-item {
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 6px;
+        background: #f8f9fa;
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        padding: 10px 20px;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header text-white 
+                {% if severity == 'severe' or severity == 'serious' %}
+                    bg-danger
+                {% else %}
+                    bg-warning
+                {% endif %}
+            ">
+                <h3 class="mb-0"><i class="fas fa-file-medical me-2"></i>Prediction Results</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert 
+                    {% if severity == 'severe' or severity == 'serious' %}
+                        alert-danger
+                    {% else %}
+                        alert-info
+                    {% endif %}
+                ">
+                    <h4 class="alert-heading">
+                        <i class="fas fa-disease me-2"></i>Likely Condition: <strong>{{ disease }}</strong>
+                    </h4>
+                    <p class="mb-0">Severity: <strong>{{ severity|upper }}</strong></p>
+                </div>
+
+                <div class="mb-4">
+                    <h5><i class="fas fa-list me-2"></i>Your Reported Symptoms:</h5>
+                    <ul class="list-group">
+                        {% for symptom in symptoms %}
+                        <li class="list-group-item">{{ symptom }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="mb-4">
+                    <h5><i class="fas fa-hand-holding-medical me-2"></i>Recommended Actions:</h5>
+                    <div class="card bg-light border-0 shadow-sm">
+                        <div class="card-body">
+                            {{ remedies }}
+                        </div>
+                    </div>
+                </div>
+
+                {% if severity == 'severe' or severity == 'serious' %}
+                <div class="alert alert-danger">
+                    <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Warning!</h5>
+                    <p class="mb-0">This condition may be serious. Please seek immediate medical attention.</p>
+                </div>
+                {% else %}
+                <div class="alert alert-secondary">
+                    <h5 class="alert-heading"><i class="fas fa-info-circle me-2"></i>Note</h5>
+                    <p class="mb-0">Consult a healthcare professional if symptoms persist or worsen.</p>
+                </div>
+                {% endif %}
+
+                <a href="/" class="btn btn-primary mt-3">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Symptom Checker
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

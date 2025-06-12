@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4">Featured Health Articles</h1>
+    
+    <div class="row">
+        {% for article in articles %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 article-card">
+                <img src="{{ url_for('static', filename='images/' + article.image) }}" 
+                     class="card-img-top" 
+                     alt="{{ article.title }}"
+                     style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <span class="badge bg-primary mb-2">{{ article.category }}</span>
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <p class="text-muted">
+                        <i class="fas fa-user me-1"></i> {{ article.author }} | 
+                        <i class="fas fa-calendar me-1"></i> {{ article.date }}
+                    </p>
+                </div>
+                <div class="card-footer bg-white">
+                    <a href="{{ url_for('featured_article', slug=article.slug) }}" 
+                       class="btn btn-primary">
+                        Read Article
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

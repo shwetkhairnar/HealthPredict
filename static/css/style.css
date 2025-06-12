@@ -1,0 +1,269 @@
+/* ========== Variables & Base Styles ========== */
+:root {
+    --primary: #4e73df;
+    --primary-hover: #3a5ec0;
+    --success: #1cc88a;
+    --info: #36b9cc;
+    --warning: #f6c23e;
+    --danger: #e74a3b;
+    --light: #f8f9fa;
+    --dark: #5a5c69;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  body {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #4a4a4a;
+  }
+  
+  /* ========== Layout Improvements ========== */
+  #wrapper {
+    overflow-x: hidden;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  #sidebar-wrapper {
+    width: 250px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    border-right: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+  }
+  
+  #page-content-wrapper {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f8fafc;
+    transition: var(--transition);
+  }
+  
+  /* ========== Enhanced Sidebar ========== */
+  .sidebar-heading {
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, #224abe 100%);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .list-group-item {
+    border-left: 3px solid transparent;
+    transition: var(--transition);
+    margin: 0.25rem 0;
+  }
+  
+  .list-group-item:hover {
+    background-color: rgba(0,0,0,0.03);
+    border-left-color: var(--primary);
+  }
+  
+  .list-group-item.active {
+    background-color: rgba(78, 115, 223, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+    border-left-color: var(--primary);
+  }
+  
+  .list-group-item i {
+    min-width: 24px;
+    text-align: center;
+    opacity: 0.8;
+  }
+  
+  /* ========== Modern Cards ========== */
+  .card {
+    border: none;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    background-color: white;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .card-img-top {
+    object-fit: cover;
+    height: 180px;
+    transition: transform 0.5s ease;
+  }
+  
+  .card:hover .card-img-top {
+    transform: scale(1.03);
+  }
+  
+  .feature-card {
+    border-radius: 0.75rem;
+    transition: var(--transition);
+    background: white;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+  
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+  
+  .feature-card:hover .icon-circle {
+    transform: scale(1.1);
+  }
+  
+  /* ========== Typography Enhancements ========== */
+  h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    color: #2d3748;
+  }
+  
+  .hero-section h1 {
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* ========== Button Improvements ========== */
+  .btn {
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.375rem;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #224abe 100%);
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-hover) 0%, #1d3b92 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(78, 115, 223, 0.3);
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  /* ========== Article/Content Styles ========== */
+  .article-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+  
+  .article-content h2 {
+    position: relative;
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+  }
+  
+  .article-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--primary);
+  }
+  
+  /* ========== Profile Page ========== */
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* ========== Responsive Improvements ========== */
+  @media (max-width: 992px) {
+    #sidebar-wrapper {
+      margin-left: -250px;
+      position: fixed;
+      height: 100vh;
+      z-index: 1030;
+    }
+    
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: 0;
+    }
+    
+    #page-content-wrapper {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    .hero-section .col-lg-6:last-child {
+      margin-top: 2rem;
+    }
+    
+    .display-5 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  /* ========== Animations ========== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .card, .feature-card {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  /* ========== Accessibility Improvements ========== */
+  a:focus, button:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  /* ========== Utility Classes ========== */
+  .rounded-lg {
+    border-radius: 0.75rem;
+  }
+  
+  .shadow-hover {
+    transition: var(--transition);
+  }
+  
+  .shadow-hover:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, #224abe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

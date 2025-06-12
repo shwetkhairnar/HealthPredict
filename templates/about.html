@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2><i class="fas fa-info-circle me-2"></i>About HealthPredict</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="mb-4">Our Mission</h3>
+                    <p>HealthPredict was created to provide accessible health information and preliminary symptom analysis using AI technology.</p>
+                    
+                    <h3 class="mt-5 mb-4">Features</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">AI-powered symptom analysis</li>
+                        <li class="list-group-item">Personal health profiles</li>
+                        <li class="list-group-item">Medical blog with latest research</li>
+                    </ul>
+
+                    <h3 class="mt-5 mb-4">Developers</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="https://www.linkedin.com/in/shwet-khairnar" target="_blank">
+                                Shwet Khairnar <i class="fab fa-linkedin text-primary ms-1"></i>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://www.linkedin.com/in/atharva-ghadge-78bba2202/" target="_blank">
+                                Atharva Ghadge <i class="fab fa-linkedin text-primary ms-1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ url_for('static', filename='images/about-us.jpg') }}" 
+                         class="img-fluid rounded" 
+                         alt="About HealthPredict">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
